@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEX Holdings — Patient Capital & Private Advisory</title>
+  
+  <!-- Google Fonts Link Ecosystem -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter+Tight:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN Tool -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Token and Utility Alignment -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["'Inter Tight'", "sans-serif"],
+            body: ["'Inter'", "sans-serif"],
+            serif: ["'Instrument Serif'", "serif"]
+          },
+          colors: {
+            paper: '#F2EFE8',          /* Warm paper background signature */
+            ink: '#181C24',            /* Deep blue-black premium ink */
+            bronze: '#7E6A4D',         /* Restrained architectural sunset bronze */
+            heroOverlay: '#0E1219'     /* Deep foundational shadow block */
+          },
+          letterSpacing: {
+            tightest: '-0.025em',
+            spaced: '0.18em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Core Layout and Visual Signature Variables -->
+  <style>
+    body {
+      background-color: #F2EFE8;
+      color: #181C24;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* .hero-cinematic MASK BLOCK LAYER */
+    .hero-cinematic {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      background: #181C24;
+    }
+    .hero-cinematic video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .hero-cinematic::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(14, 18, 25, 0.45) 0%,
+        rgba(14, 18, 25, 0.05) 18%,
+        rgba(14, 18, 25, 0) 35%,
+        rgba(14, 18, 25, 0) 65%,
+        rgba(14, 18, 25, 0.55) 85%,
+        rgba(14, 18, 25, 0.8) 100%
+      );
+    }
+
+    /* DARK BLUR FLOATING NAVBAR PILL */
+    .nav-pill-cinematic {
+      background: rgba(14, 18, 25, 0.55);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* TIMED CONTRAST BUTTON SYSTEMS */
+    .cta-filled-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      color: #181C24;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-filled-white:hover {
+      background: #F2EFE8;
+      transform: translateY(-1px);
+    }
+
+    .cta-ghost-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(14, 18, 25, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .cta-ghost-glass:hover {
+      background: rgba(14, 18, 25, 0.6);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-primary-paper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #181C24;
+      color: #F2EFE8;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-primary-paper:hover {
+      background: #7E6A4D;
+      transform: translateY(-1px);
+    }
+
+    /* THE BRAND MARKS - ASYMMETRIC BALANCERS */
+    .tagline-italic {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.005em;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .tagline-italic-ink {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.005em;
+      color: rgba(24, 28, 36, 0.7);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* VANILLA INTERSECTION OBSERVER ENTRANCES */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO REVEAL TIMED DELAYS */
+    .hero-delayed-1 { opacity: 0; transform: translateY(15px); animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+    .hero-delayed-2 { opacity: 0; transform: translateY(15px); animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+    .hero-delayed-3 { opacity: 0; transform: translateY(15px); animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
+    .hero-delayed-4 { opacity: 0; transform: translateY(10px); animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; }
+
+    @keyframes heroIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased select-none bg-paper text-ink">
+
+  <!-- 1. HERO - FULL-BLEED CINEMATIC FRAME -->
+  <section class="hero-cinematic">
+    <!-- Immersive Media Component Background Layer -->
+    <video autoplay loop muted playsinline preload="auto">
+      <source src="https://videos.bravebrand.com/Founders%20Scaling/hf_20260417_065328_d2391514-5455-4ad7-aedc-d9639ec17b92.mp4" type="video/mp4">
+    </video>
+
+    <!-- Floating Glass Navigation Pill Block -->
+    <nav class="absolute top-0 left-0 right-0 z-30 px-6 pt-6 flex justify-center pointer-events-none">
+      <div class="nav-pill-cinematic pointer-events-auto">
+        <!-- Wordmark left asset positioning -->
+        <a href="#" class="font-display font-bold text-lg text-white tracking-tight px-3 select-none">
+          VEX
+        </a>
+
+        <span class="hidden md:inline-block w-px h-5 bg-white/20 mx-1"></span>
+
+        <!-- Nav structural links centered -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#thesis" class="px-3 py-1.5 text-xs font-medium tracking-wide uppercase text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/5">Thesis</a>
+          <a href="#areas" class="px-3 py-1.5 text-xs font-medium tracking-wide uppercase text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/5">Pillars</a>
+          <a href="#portfolio" class="px-3 py-1.5 text-xs font-medium tracking-wide uppercase text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/5">Portfolio</a>
+          <a href="#principals" class="px-3 py-1.5 text-xs font-medium tracking-wide uppercase text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/5">Principals</a>
+        </div>
+
+        <span class="hidden md:inline-block w-px h-5 bg-white/20 mx-1"></span>
+
+        <!-- Action Button inside structural navigation wrapper -->
+        <a href="#contact" class="cta-filled-white text-xs px-4 py-2 font-semibold">
+          Start a Chat
+        </a>
+      </div>
+    </nav>
+
+    <!-- Bottom Alignment Text Layout Zone (Middle 50% Clear Constraint) -->
+    <div class="absolute bottom-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-16 pb-12 md:pb-16 lg:pb-20">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-12">
+        
+        <!-- Left Side Data Grid Cluster -->
+        <div class="max-w-4xl">
+          <!-- Main Confident Sans Editorial Scale Header -->
+          <h1 class="font-display font-semibold text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tightest text-white mb-6 text-balance hero-delayed-1">
+            We back the people who build what comes next.
+          </h1>
+
+          <!-- Secondary Subheadline Opacity Managed Text -->
+          <p class="font-body text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mb-8 hero-delayed-2">
+            Patient capital for ventures, real estate, and operating companies that take time to mature.
+          </p>
+
+          <!-- Standard Side-by-Side Dual CTA Component -->
+          <div class="flex items-center gap-3 hero-delayed-3">
+            <a href="#contact" class="cta-filled-white">Start a Chat</a>
+            <a href="#thesis" class="cta-ghost-glass">Explore Now</a>
+          </div>
+        </div>
+
+        <!-- Right Side Asymmetric Anchor Mark -->
+        <div class="tagline-italic md:self-end md:mb-2 hero-delayed-4">
+          Investing. Building. Advisory.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. HERO TRANSITION - PAPER-TONED BREATHING ZONE -->
+  <div class="w-full bg-paper h-8 md:h-12 border-b border-border/40"></div>
+
+  <main class="relative bg-paper z-20">
+    
+    <!-- 3. THESIS - DEEP ALIGNMENT INTRODUCTORY DECLARATION -->
+    <section id="thesis" class="py-24 md:py-36 lg:py-44 px-6 md:px-12 lg:px-16 reveal-section">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Subtle Reference Marker Label -->
+        <div class="font-body text-xs uppercase tracking-spaced text-muted-foreground mb-8">
+          The thesis
+        </div>
+
+        <!-- Section Structural Title containing Signature Serif Accent Emphasizer -->
+        <h2 class="font-display font-semibold text-3xl md:text-5xl lg:text-6xl leading-[1.15] tracking-tightest text-ink max-w-5xl mb-14 text-balance">
+          We invest in <span class="font-serif italic font-normal text-ink">conviction</span>, hold for decades, and build alongside the founders, families, and operators we choose.
+        </h2>
+
+        <!-- Descriptive Dual Column Configuration -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 max-w-4xl font-body text-sm md:text-base text-ink/80 leading-relaxed">
+          <p>
+            We are not a fund with a clock. We deploy capital from a permanent vehicle into ventures, real estate, and operating companies where time is an asset rather than a constraint. We have no IPO timeline. No artificial exit pressure. No fund-end deadline.
+          </p>
+          <p>
+            Most of our investments are made through introductions from people we already know. The work begins with a conversation, not a pitch deck. If a relationship makes sense, we will find a way to make it work — and we will give it the time it needs.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. AREAS - THE THREE RECOGNIZED REVENUE PILLARS -->
+    <section id="areas" class="py-24 md:py-36 px-6 md:px-12 lg:px-16 border-t border-border/60 reveal-section">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Element Segment Layout Header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-24">
+          <div>
+            <div class="font-body text-xs uppercase tracking-spaced text-muted-foreground mb-4">
+              What we do
+            </div>
+            <h2 class="font-display font-semibold text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tightest text-ink">
+              Three areas. <span class="font-serif italic font-normal text-ink/70">One thesis.</span>
+            </h2>
+          </div>
+          <div class="tagline-italic-ink md:mb-1">
+            Investing. Building. Advisory.
+          </div>
+        </div>
+
+        <!-- Triple Vertical Pillar Component Architecture Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Core Card Item Element 01 -->
+          <article class="bg-white/80 border border-border/60 rounded-lg p-8 md:p-10 transition-all duration-300 hover:border-ink/20 hover:shadow-md flex flex-col justify-between min-h-[340px]">
+            <div>
+              <div class="font-display font-medium text-4xl md:text-5xl text-bronze/80 leading-none tracking-tightest mb-8">
+                01
+              </div>
+              <h3 class="font-display font-semibold text-xl md:text-2xl text-ink mb-4">
+                Investing
+              </h3>
+              <p class="font-body text-xs md:text-sm text-ink/70 leading-relaxed mb-8">
+                Long-horizon equity in ventures and operating companies. Typical hold period: ten years or more. Cheque sizes from $2M to $25M, depending on stage and conviction.
+              </p>
+            </div>
+            <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground pt-5 border-t border-border/40">
+              Active portfolio: 14 companies
+            </div>
+          </article>
+
+          <!-- Core Card Item Element 02 -->
+          <article class="bg-white/80 border border-border/60 rounded-lg p-8 md:p-10 transition-all duration-300 hover:border-ink/20 hover:shadow-md flex flex-col justify-between min-h-[340px]">
+            <div>
+              <div class="font-display font-medium text-4xl md:text-5xl text-bronze/80 leading-none tracking-tightest mb-8">
+                02
+              </div>
+              <h3 class="font-display font-semibold text-xl md:text-2xl text-ink mb-4">
+                Building
+              </h3>
+              <p class="font-body text-xs md:text-sm text-ink/70 leading-relaxed mb-8">
+                Real estate development and operating-company partnerships where we contribute capital, judgment, and hands-on involvement. Coastal Mediterranean, alpine, and coastal North American assets.
+              </p>
+            </div>
+            <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground pt-5 border-t border-border/40">
+              Properties under development: 6
+            </div>
+          </article>
+
+          <!-- Core Card Item Element 03 -->
+          <article class="bg-white/80 border border-border/60 rounded-lg p-8 md:p-10 transition-all duration-300 hover:border-ink/20 hover:shadow-md flex flex-col justify-between min-h-[340px]">
+            <div>
+              <div class="font-display font-medium text-4xl md:text-5xl text-bronze/80 leading-none tracking-tightest mb-8">
+                03
+              </div>
+              <h3 class="font-display font-semibold text-xl md:text-2xl text-ink mb-4">
+                Advisory
+              </h3>
+              <p class="font-body text-xs md:text-sm text-ink/70 leading-relaxed mb-8">
+                Strategic counsel for founders and family principals on transitions, consolidations, and capital architecture. By introduction. Not a paid public market service.
+              </p>
+            </div>
+            <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground pt-5 border-t border-border/40">
+              By introduction only
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PORTFOLIO - SECURE COMMITMENTS METADATA INDEX -->
+    <section id="portfolio" class="py-24 md:py-36 px-6 md:px-12 lg:px-16 border-t border-border/60 reveal-section">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Header Container Elements -->
+        <div class="mb-16 md:mb-20">
+          <div class="font-body text-xs uppercase tracking-spaced text-muted-foreground mb-4">
+            Selected portfolio
+          </div>
+          <h2 class="font-display font-semibold text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tightest text-ink max-w-3xl mb-6">
+            A small number of <span class="font-serif italic font-normal text-ink">long</span> commitments.
+          </h2>
+          <p class="font-body text-sm md:text-base text-ink/70 leading-relaxed max-w-xl">
+            We share a partial list. Some commitments are confidential by request of the founders or families involved.
+          </p>
+        </div>
+
+        <!-- Flat Architectural Aspect Media Card Panel -->
+        <div class="mb-16 aspect-[21/9] rounded overflow-hidden border border-border/40 shadow-sm select-none">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Minimal clean concrete real estate architecture layout frame" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Strict Tabular Text Configuration Matrix -->
+        <div class="border-t border-border/80">
+          
+          <!-- Tabular Row Element 01 -->
+          <article class="grid grid-cols-12 gap-4 py-8 border-b border-border/50 group items-start">
+            <div class="col-span-2 md:col-span-1">
+              <span class="font-display font-medium text-lg md:text-xl text-bronze/80">01</span>
+            </div>
+            <div class="col-span-10 md:col-span-4">
+              <h3 class="font-display font-semibold text-lg md:text-xl text-ink group-hover:text-bronze transition-colors">Atelier Holdings</h3>
+              <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Operating company</div>
+            </div>
+            <div class="col-span-12 md:col-span-5 font-body text-xs md:text-sm text-ink/70 leading-relaxed md:pt-0.5">
+              A holding for boutique hospitality operations across Southern Europe.
+            </div>
+            <div class="col-span-12 md:col-span-2 font-body text-xs text-muted-foreground md:text-right pt-1 md:pt-0.5">
+              Acquired 2019
+            </div>
+          </article>
+
+          <!-- Tabular Row Element 02 -->
+          <article class="grid grid-cols-12 gap-4 py-8 border-b border-border/50 group items-start">
+            <div class="col-span-2 md:col-span-1">
+              <span class="font-display font-medium text-lg md:text-xl text-bronze/80">02</span>
+            </div>
+            <div class="col-span-10 md:col-span-4">
+              <h3 class="font-display font-semibold text-lg md:text-xl text-ink group-hover:text-bronze transition-colors">Mistral Coastal</h3>
+              <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Real estate</div>
+            </div>
+            <div class="col-span-12 md:col-span-5 font-body text-xs md:text-sm text-ink/70 leading-relaxed md:pt-0.5">
+              A coastal hotel and residential land package integration in the South of France.
+            </div>
+            <div class="col-span-12 md:col-span-2 font-body text-xs text-muted-foreground md:text-right pt-1 md:pt-0.5">
+              Developed 2021
+            </div>
+          </article>
+
+          <!-- Tabular Row Element 03 -->
+          <article class="grid grid-cols-12 gap-4 py-8 border-b border-border/50 group items-start">
+            <div class="col-span-2 md:col-span-1">
+              <span class="font-display font-medium text-lg md:text-xl text-bronze/80">03</span>
+            </div>
+            <div class="col-span-10 md:col-span-4">
+              <h3 class="font-display font-semibold text-lg md:text-xl text-ink group-hover:text-bronze transition-colors">Verge & Co</h3>
+              <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Venture investment</div>
+            </div>
+            <div class="col-span-12 md:col-span-5 font-body text-xs md:text-sm text-ink/70 leading-relaxed md:pt-0.5">
+              A private operating company building data systems infrastructure for multigenerational households.
+            </div>
+            <div class="col-span-12 md:col-span-2 font-body text-xs text-muted-foreground md:text-right pt-1 md:pt-0.5">
+              First investment 2022
+            </div>
+          </article>
+
+          <!-- Tabular Row Element 04 -->
+          <article class="grid grid-cols-12 gap-4 py-8 border-b border-border/50 group items-start">
+            <div class="col-span-2 md:col-span-1">
+              <span class="font-display font-medium text-lg md:text-xl text-bronze/80">04</span>
+            </div>
+            <div class="col-span-10 md:col-span-4">
+              <h3 class="font-display font-semibold text-lg md:text-xl text-ink group-hover:text-bronze transition-colors">Fonta Studio</h3>
+              <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Venture investment</div>
+            </div>
+            <div class="col-span-12 md:col-span-5 font-body text-xs md:text-sm text-ink/70 leading-relaxed md:pt-0.5">
+              An architectural design studio developing internal tooling platforms alongside European luxury brands.
+            </div>
+            <div class="col-span-12 md:col-span-2 font-body text-xs text-muted-foreground md:text-right pt-1 md:pt-0.5">
+              Series A 2023
+            </div>
+          </article>
+
+        </div>
+
+        <p class="font-body text-xs italic text-muted-foreground mt-12">
+          A complete transactional portfolio ledger framework summary is accessible upon verified private verification.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. PRINCIPALS - THE CORE STEWARDSHIP PARTNERS -->
+    <section id="principals" class="py-24 md:py-36 px-6 md:px-12 lg:px-16 border-t border-border/60 reveal-section">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Segment Label Grid Title Elements -->
+        <div class="mb-16 md:mb-24">
+          <div class="font-body text-xs uppercase tracking-spaced text-muted-foreground mb-4">
+            Principals
+          </div>
+          <h2 class="font-display font-semibold text-3xl md:text-5xl lg:text-6xl tracking-tightest text-ink">
+            The people who <span class="font-serif italic font-normal text-ink">do the work.</span>
+          </h2>
+        </div>
+
+        <!-- Structural Greyscale Portrait Duo Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-5xl">
+          
+          <!-- Principal Person One -->
+          <div>
+            <div class="aspect-[4/5] rounded overflow-hidden bg-white/40 border border-border/40 mb-6 shadow-inner select-none">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&h=750&q=80" alt="Henri Marquand portrait" class="w-full h-full object-cover grayscale opacity-95 transition-all duration-500 hover:grayscale-0">
+            </div>
+            <h3 class="font-display font-semibold text-xl md:text-2xl text-ink mb-1">Henri Marquand</h3>
+            <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mb-5">Managing principal</div>
+            <p class="font-body text-xs md:text-sm text-ink/75 leading-relaxed max-w-sm">
+              Twenty years investing in operating companies and family-held businesses across Europe and North America. Deep strategic management lineage initialization context framework.
+            </p>
+          </div>
+
+          <!-- Principal Person Two -->
+          <div>
+            <div class="aspect-[4/5] rounded overflow-hidden bg-white/40 border border-border/40 mb-6 shadow-inner select-none">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&h=750&q=80" alt="Camille Aurel portrait" class="w-full h-full object-cover grayscale opacity-95 transition-all duration-500 hover:grayscale-0">
+            </div>
+            <h3 class="font-display font-semibold text-xl md:text-2xl text-ink mb-1">Camille Aurel</h3>
+            <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground mb-5">Principal, Real Estate</div>
+            <p class="font-body text-xs md:text-sm text-ink/75 leading-relaxed max-w-sm">
+              Real estate developer and former infrastructure architect. Leads the firm's coastal Mediterranean and alpine investment structures from local operations interfaces.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT - RESTRAINED RELATIONSHIP INVITATION -->
+    <section id="contact" class="py-24 md:py-36 lg:py-44 px-6 md:px-12 lg:px-16 border-t border-border/60 reveal-section">
+      <div class="max-w-4xl mx-auto text-center">
+        
+        <!-- Subtle Operational Header Label -->
+        <div class="font-body text-xs uppercase tracking-spaced text-muted-foreground mb-10">
+          To begin a conversation
+        </div>
+
+        <!-- Section Structural Title Layout -->
+        <h2 class="font-display font-semibold text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tightest text-ink mb-10 text-balance">
+          We respond <span class="font-serif italic font-normal text-ink">personally</span> to every introduction.
+        </h2>
+
+        <!-- Explanatory Peer Copy Layout Block -->
+        <p class="font-body text-sm md:text-base text-ink/75 leading-relaxed max-w-xl mx-auto mb-12">
+          The best way to reach us is through someone who already knows us. If we have not yet met, write us a note describing what you are working with and how you came to find us.
+        </p>
+
+        <!-- Centered Dynamic Actions Layer Interface -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+          <a href="mailto:office@vexholdings.com" class="cta-primary-paper">Start a Chat</a>
+          <a href="mailto:office@vexholdings.com" class="font-display italic text-base text-ink/80 hover:text-bronze transition-colors select-text">
+            office@vexholdings.com
+          </a>
+        </div>
+
+        <!-- Final Signature Tagline Accent Bookend -->
+        <div class="tagline-italic-ink tracking-wide block">
+          Investing. Building. Advisory.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 8. FOOTER - STATUTORY DECLARATIONS & LEGAL MATRIX -->
+  <footer class="bg-paper border-t border-border/80 py-16 px-6 md:px-12 lg:px-16 z-30 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+        
+        <!-- Corporate Identifier Column -->
+        <div class="md:col-span-2">
+          <div class="font-display font-bold text-xl text-ink tracking-tight mb-4">
+            VEX
+          </div>
+          <p class="font-body text-xs md:text-sm text-ink/60 max-w-xs leading-relaxed mb-6">
+            Patient capital for ventures, real estate, and operating companies.
+          </p>
+          <div class="font-body text-[10px] uppercase tracking-wider text-muted-foreground">
+            Geneva · Marseille · Zurich
+          </div>
+        </div>
+
+        <!-- Directory Map Links Column -->
+        <div>
+          <span class="font-body text-[10px] uppercase tracking-wider font-bold text-ink block mb-4">The Firm</span>
+          <ul class="space-y-2.5 font-body text-xs text-ink/75">
+            <li><a href="#thesis" class="hover:text-bronze transition-colors">Story</a></li>
+            <li><a href="#principals" class="hover:text-bronze transition-colors">Principals</a></li>
+            <li><a href="#portfolio" class="hover:text-bronze transition-colors">Portfolio</a></li>
+          </ul>
+        </div>
+
+        <!-- Direct Coordinates Information Column -->
+        <div>
+          <span class="font-body text-[10px] uppercase tracking-wider font-bold text-ink block mb-4">Connect</span>
+          <ul class="space-y-2.5 font-body text-xs text-ink/75">
+            <li><a href="mailto:office@vexholdings.com" class="hover:text-bronze transition-colors select-text">office@vexholdings.com</a></li>
+            <li class="text-muted-foreground select-text">+41 22 000 0000</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Compliance Matrix Base Platform Row -->
+      <div class="pt-8 border-t border-border/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] text-muted-foreground">
+        <div>
+          &copy; 2026 VEX Holdings. Privately held. No public shares.
+        </div>
+        <div class="flex items-center gap-6 font-medium">
+          <a href="#" class="hover:text-ink transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-ink transition-colors">Terms of Engagement</a>
+          <a href="#" class="hover:text-ink transition-colors">Disclosures</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- CORE SCRIPTS - ANIMATION TRIGGER FRAMEWORK -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Configuration parameters for structural reveal logic
+      const observerSettings = {
+        root: null,
+        rootMargin: "-60px",
+        threshold: 0.02
+      };
+
+      // Native functional intersection execution module
+      const scrollObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); // Execution limit to once per runtime context
+          }
+        });
+      }, observerSettings);
+
+      // Target mapping execution loop links
+      const elementRegistry = document.querySelectorAll(".reveal-section");
+      elementRegistry.forEach(section => {
+        scrollObserver.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>

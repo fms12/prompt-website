@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Foundry — Applied AI Lab</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#151313',
+            paper: '#fffdf8',
+            line: '#e8e3d8',
+            muted: '#6d6962',
+            glass: 'rgba(72, 62, 76, 0.42)',
+            brandBlue: '#2087c9',
+            cream: '#fbfaf5',
+          },
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'serif'],
+            sans: ['"Inter Tight"', 'sans-serif'],
+          },
+          letterSpacing: {
+            tightest: '-0.015em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --ink: #151313;
+      --paper: #fffdf8;
+      --line: #e8e3d8;
+      --muted: #6d6962;
+      --glass: rgba(72, 62, 76, 0.42);
+      --blue: #2087c9;
+      --cream: #fbfaf5;
+      --shadow: 0 28px 70px rgba(45, 35, 20, 0.16);
+    }
+
+    body {
+      background-color: #fffdf8;
+      color: #151313;
+      font-family: "Inter Tight", sans-serif;
+      letter-spacing: -0.015em;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Hero Shadow Grading Overlays */
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(21, 19, 19, 0.25) 0%, rgba(21, 19, 19, 0.5) 100%);
+    }
+    
+    .hero-radial-shadow {
+      background: radial-gradient(circle at bottom left, rgba(21, 19, 19, 0.65) 0%, transparent 70%);
+    }
+
+    /* Mandatory Container-Bounded Video Positioning System */
+    .skyArt {
+      position: relative;
+      overflow: hidden;
+      background: url("https://playground.bravebrand.com/assets/backgrounds/signal-foundry-sky-garden.webp") center / cover no-repeat;
+    }
+
+    .skyVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    /* Cinematic Heavy Frost Glass Panel Utility */
+    .backdrop-premium {
+      backdrop-filter: blur(32px) saturate(130%);
+      -webkit-backdrop-filter: blur(32px) saturate(130%);
+    }
+
+    /* Vanilla Viewport Reveal Transition States */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Optional sequential staggered card delay options */
+    .delay-1 { transition-delay: 100ms; }
+    .delay-2 { transition-delay: 200ms; }
+    .delay-3 { transition-delay: 300ms; }
+  </style>
+</head>
+<body class="antialiased selection:bg-brandBlue/10 selection:text-ink">
+
+  <section class="relative w-full h-screen min-h-[720px] flex flex-col justify-between p-6 md:p-10 overflow-hidden bg-[#151313]">
+    
+    <div class="absolute inset-0 z-0">
+      <video
+        class="w-full h-full object-cover object-center pointer-events-none select-none"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_30c6yRkxUog0TZ5432rCR7HN4Pe/hf_20260501_062927_2b8ce586-f555-4610-88ae-b2d3752ede3b.mp4"
+        poster="https://playground.bravebrand.com/assets/backgrounds/signal-foundry-painted-city-hero.webp"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      ></video>
+      <div class="absolute inset-0 hero-overlay z-10" />
+      <div class="absolute inset-0 hero-radial-shadow z-10" />
+    </div>
+
+    <header class="relative z-20 w-full flex items-center justify-between pointer-events-none">
+      <div class="hidden md:block w-32" />
+
+      <nav class="pointer-events-auto mx-auto md:mx-0 flex items-center gap-1 p-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 shadow-xl opacity-0 -translate-y-4 transition-all duration-1000 ease-out" id="hero-nav">
+        <a href="#" class="flex items-center justify-center w-8 h-8 rounded-full bg-white text-ink font-bold text-sm tracking-wider hover:scale-105 transition-transform">
+          ✦
+        </a>
+        <div class="flex items-center px-1 text-white/80 font-sans text-xs sm:text-sm font-medium tracking-wide">
+          <a href="#about" class="px-3 sm:px-4 py-1.5 rounded-full hover:text-white transition-colors">About</a>
+          <a href="#manifesto" class="px-3 sm:px-4 py-1.5 rounded-full hover:text-white transition-colors">Writing</a>
+          <a href="#system" class="px-3 sm:px-4 py-1.5 rounded-full hover:text-white transition-colors">Careers</a>
+        </div>
+        <a href="#cta" class="px-4 py-1.5 rounded-full bg-white hover:bg-paper text-ink font-sans text-xs sm:text-sm font-semibold transition-all active:scale-95 shadow-sm">
+          Get Signal
+        </a>
+      </nav>
+
+      <div class="hidden md:block w-32 text-right text-white/70 font-sans text-xs tracking-widest uppercase font-medium" id="time-display">
+        NYC // --:--
+      </div>
+    </header>
+
+    <div class="relative z-20 w-full max-w-xl self-end justify-self-end mt-auto mb-4 md:mb-6 opacity-0 translate-y-6 transition-all duration-[1200ms] ease-out" id="hero-card">
+      <div class="p-6 md:p-8 rounded-[24px] bg-white/[0.08] border border-white/10 shadow-2xl backdrop-premium">
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-5xl text-white font-normal leading-[1.1] mb-4">
+          AI that turns ideas into operating companies.
+        </h1>
+        <p class="font-sans text-white/70 text-sm md:text-base font-normal leading-relaxed mb-6">
+          Signal Foundry is an applied AI lab building the company brain, launch packet, and agent handoff for founders who want to move from insight to execution.
+        </p>
+        <a href="#about" class="inline-flex items-center gap-2 group text-white font-sans font-medium text-sm hover:text-brandBlue transition-colors">
+          <span>Explore the system methodology</span>
+          <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="about" class="relative w-full bg-white px-6 py-20 md:py-32 border-b border-line">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="skyArt w-full h-[58vh] min-h-[520px] rounded-[32px] p-6 md:p-12 flex flex-col justify-between shadow-2xl reveal-item">
+        <video
+          class="skyVideo"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_30c6yRkxUog0TZ5432rCR7HN4Pe/hf_20260501_082435_42398084-1c8d-48e5-a962-fe7c28c124e6.mp4"
+          poster="https://playground.bravebrand.com/assets/backgrounds/signal-foundry-sky-garden.webp"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        ></video>
+        
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-transparent to-brandBlue/10 pointer-events-none z-10" />
+
+        <div class="relative z-20 w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+          <h2 class="col-span-1 md:col-span-7 font-serif text-3xl md:text-4xl lg:text-5xl text-white font-normal leading-tight drop-shadow-sm">
+            From founder insight to agent-ready execution.
+          </h2>
+          <p class="col-span-1 md:col-span-5 font-sans text-white/80 text-sm md:text-base leading-relaxed md:text-right md:pl-8 pt-2">
+            We accelerate the transition states between conceptual spark and architecture validation parameters, designing code footprints capable of true autonomous scaling.
+          </p>
+        </div>
+
+        <div class="relative z-20 w-full flex justify-between items-end mt-auto pt-12">
+          <div class="max-w-xs p-4 rounded-xl bg-white/10 backdrop-blur-lg border border-white/10 shadow-lg">
+            <span class="block text-[10px] font-bold tracking-wider text-brandBlue uppercase mb-1">Active Parameter</span>
+            <p class="font-sans text-white text-xs leading-normal">
+              Converting architecture plans into runtime environments across current development pipelines.
+          </div>
+          <span class="text-white/30 font-serif text-4xl hidden sm:block">01</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="manifesto" class="relative w-full bg-paper px-6 py-20 md:py-32 border-b border-line overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+      
+      <div class="col-span-1 md:col-span-5 flex justify-center reveal-item">
+        <img 
+          class="w-full max-w-xs md:max-w-sm object-contain mix-blend-multiply select-none pointer-events-none opacity-85" 
+          src="https://playground.bravebrand.com/assets/backgrounds/signal-foundry-pixel-flower.webp" 
+          alt="Signal Foundry Fluid Micro Pixel Graphics Illustration" 
+        />
+      </div>
+
+      <div class="col-span-1 md:col-span-7 flex flex-col space-y-8 md:pl-6 reveal-item delay-1">
+        <div class="space-y-4 max-w-xl text-muted text-base md:text-lg leading-relaxed font-normal">
+          <p>
+            We envision a world where anyone with an idea and some unique insight can start a business.
+          </p>
+          <p>
+            A world where someone can wake up with an idea for a company, open their laptop, and create it in real time.
+          </p>
+        </div>
+
+        <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ink font-normal leading-[1.15] max-w-2xl border-t border-line pt-8">
+          Where starting up a real world company is as easy as playing a video game.
+        </h3>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="system" class="relative w-full bg-cream px-6 py-20 md:py-32 border-b border-line">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="mb-12 md:mb-16 reveal-item">
+        <span class="font-sans text-[11px] font-bold tracking-[0.12em] text-muted uppercase block mb-2">
+          WHAT GETS BUILT
+        </span>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ink font-normal leading-tight max-w-2xl">
+          A company brain, not another chat thread.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-8 rounded-2xl bg-white border border-line flex flex-col justify-between min-h-[200px] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ink/[0.02] reveal-item">
+          <div>
+            <span class="font-serif text-lg text-muted/40 block mb-4">01</span>
+            <h4 class="font-sans font-semibold text-base text-ink mb-2">Brand Wiki</h4>
+            <p class="font-sans text-muted text-sm leading-relaxed">The source of truth for audience, offer, proof, positioning, and language.</p>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-white border border-line flex flex-col justify-between min-h-[200px] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ink/[0.02] reveal-item delay-1">
+          <div>
+            <span class="font-serif text-lg text-muted/40 block mb-4">02</span>
+            <h4 class="font-sans font-semibold text-base text-ink mb-2">Copy Coach</h4>
+            <p class="font-sans text-muted text-sm leading-relaxed">Sharpens claims, pages, emails, and scripts against the brain.</p>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-white border border-line flex flex-col justify-between min-h-[200px] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ink/[0.02] reveal-item delay-2">
+          <div>
+            <span class="font-serif text-lg text-muted/40 block mb-4">03</span>
+            <h4 class="font-sans font-semibold text-base text-ink mb-2">Launch Packet</h4>
+            <p class="font-sans text-muted text-sm leading-relaxed">Turns choices into an agent-ready build spec.</p>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-white border border-line flex flex-col justify-between min-h-[200px] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ink/[0.02] reveal-item delay-3">
+          <div>
+            <span class="font-serif text-lg text-muted/40 block mb-4">04</span>
+            <h4 class="font-sans font-semibold text-base text-ink mb-2">Agent Handoff</h4>
+            <p class="font-sans text-muted text-sm leading-relaxed">Gives the builder everything needed to ship without guessing.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="cta" class="relative w-full h-[65vh] min-h-[480px] flex flex-col justify-between p-6 md:p-12 overflow-hidden bg-[#151313]">
+    
+    <div class="absolute inset-0 z-0">
+      <img 
+        class="w-full h-full object-cover object-center opacity-30 pointer-events-none select-none filter brightness-50" 
+        src="https://playground.bravebrand.com/assets/backgrounds/signal-foundry-painted-city-hero.webp" 
+        alt="Signal Foundry Ground Backdrop Component Scene" 
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
+    </div>
+
+    <div class="relative z-10 my-auto text-center flex flex-col items-center px-4 reveal-item">
+      <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-normal leading-tight max-w-3xl mb-8">
+        Agentic companies are on the horizon. We're building them.
+      </h2>
+      
+      <a 
+        href="mailto:hello@signalfoundry.com" 
+        class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white hover:bg-paper text-ink font-sans font-semibold text-sm transition-all transform active:scale-95 shadow-xl hover:shadow-2xl"
+      >
+        <span>Get to know us</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <footer class="relative z-10 w-full pt-6 border-t border-white/10 reveal-item">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs">
+        <span class="font-sans font-bold text-white tracking-wider">
+          Signal Foundry
+        </span>
+        <span class="font-sans text-white/50 tracking-wide">
+          Applied intelligence for company creation.
+        </span>
+        <span class="font-sans text-white/20 uppercase tracking-widest text-[10px]">
+          © 2026 ALL RIGHTS RESERVED
+        </span>
+      </div>
+    </footer>
+
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      
+      // 1. Initial Page Animation Sequence Delays (Hero Items Elements)
+      const heroNav = document.getElementById("hero-nav");
+      const heroCard = document.getElementById("hero-card");
+      
+      setTimeout(() => {
+        if (heroNav) {
+          heroNav.style.opacity = "1";
+          heroNav.style.transform = "translateY(0)";
+        }
+      }, 150);
+
+      setTimeout(() => {
+        if (heroCard) {
+          heroCard.style.opacity = "1";
+          heroCard.style.transform = "translateY(0)";
+        }
+      }, 350);
+
+      
+      // 2. Continuous Metric Zone System Clock Sync Implementation
+      const timeContainer = document.getElementById("time-display");
+      function updateClockMetric() {
+        if (!timeContainer) return;
+        const opts = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: true };
+        timeContainer.innerText = "NYC // " + new Intl.DateTimeFormat('en-US', opts).format(new Date());
+      }
+      updateClockMetric();
+      setInterval(updateClockMetric, 60000);
+
+
+      // 3. Viewport Entry Transition Scheduler (Native Intersection Observer Setup)
+      const observerSettings = {
+        root: null,
+        rootMargin: "-40px",
+        threshold: 0.05
+      };
+
+      const scrollObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); // Kill context footprint map link verification tracker
+          }
+        });
+      }, observerSettings);
+
+      const structuralRegistry = document.querySelectorAll(".reveal-item");
+      structuralRegistry.forEach(el => {
+        scrollObserver.observe(el);
+      });
+
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garden Lane Florals — Small-Batch Seasonal Arrangements</title>
+  
+  <!-- Google Fonts Connection -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Token Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["'Fraunces'", "Georgia", "serif"],
+            body: ["'Inter'", "sans-serif"]
+          },
+          colors: {
+            background: '#FBF7F0',       /* Cream paper base */
+            foreground: '#1A1A1A',       /* Near-black ink */
+            mutedBg: '#EFEAE0',          /* Soft image placeholder background */
+            mutedText: '#66635D',        /* Soft gray for metadata descriptions */
+            borderWarm: '#E5DFD3',       /* Subtle warm hairline rule */
+            accentYellow: '#FFD43B'      /* Saturated yellow pop variant */
+          },
+          letterSpacing: {
+            tightest: '-0.04em',
+            spaced: '0.15em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Embedded Core Component Engine -->
+  <style>
+    :root {
+      --background: 36 38% 96%;
+      --foreground: 0 0% 10%;
+      --border: 36 20% 86%;
+      --accent-yellow: 50 100% 60%;
+    }
+
+    body {
+      background-color: #FBF7F0;
+      color: #1A1A1A;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MASSIVE DISPLAY WORDMARK PROPERTIES */
+    .wordmark-massive {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      font-size: clamp(3.5rem, 13vw, 13.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .wordmark-massive-overlay {
+      color: #FFFFFF;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* IMAGE CONTAINMENT MAPPINGS */
+    .image-cell-rounded {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: #EFEAE0;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      width: 100%;
+    }
+    .image-cell-rounded img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-cell-rounded-square { aspect-ratio: 1 / 1; }
+    .image-cell-rounded-portrait { aspect-ratio: 4 / 5; }
+
+    /* AUTHENTIC RETRO SCALLOP BADGE DESIGN */
+    .scallop-badge {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 7.5rem;
+      height: 7.5rem;
+      background: #FFD43B;
+      color: #1A1A1A;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      padding: 0.75rem;
+      clip-path: polygon(50% 0%, 61% 4%, 71% 0%, 81% 8%, 91% 4%, 96% 14%, 100% 23%, 96% 33%, 100% 43%, 96% 52%, 100% 62%, 96% 71%, 91% 81%, 81% 84%, 71% 92%, 61% 88%, 50% 96%, 39% 88%, 29% 92%, 19% 84%, 9% 81%, 4% 71%, 0% 62%, 4% 52%, 0% 43%, 4% 33%, 0% 23%, 4% 14%, 9% 4%, 19% 8%, 29% 0%, 39% 4%);
+      transform: rotate(-8deg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scallop-badge:hover {
+      transform: scale(1.08) rotate(-3deg);
+    }
+    .scallop-badge-eyebrow,
+    .scallop-badge-footer { 
+      font-size: 9px; 
+      font-weight: 700; 
+      letter-spacing: 0.12em; 
+      text-transform: uppercase; 
+      margin-bottom: 0.15rem; 
+    }
+    .scallop-badge-main { 
+      font-size: 13px; 
+      font-weight: 700; 
+      line-height: 1.2; 
+      font-family: 'Fraunces', Georgia, serif; 
+      font-variation-settings: "opsz" 60; 
+    }
+
+    /* SPECIFICATION CTA PILLS */
+    .cta-pill-yellow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #FFD43B;
+      color: #1A1A1A;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease-out;
+      box-shadow: 0 4px 14px rgba(255, 212, 59, 0.2);
+    }
+    .cta-pill-yellow::before { 
+      content: '•'; 
+      font-size: 1.1em; 
+      line-height: 0; 
+    }
+    .cta-pill-yellow:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 20px rgba(255, 212, 59, 0.35); 
+    }
+
+    /* INFINITE MARQUEE PERFORMANCES */
+    .product-ticker {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent 0, black 4rem, black calc(100% - 4rem), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 4rem, black calc(100% - 4rem), transparent 100%);
+    }
+    .product-ticker-track {
+      display: flex;
+      gap: 2rem;
+      width: max-content;
+      animation: tickerMarquee 45s linear infinite;
+    }
+    .product-ticker-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes tickerMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* HIDDEN SCROLLBARS FOR SYSTEM CAROUSELS */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- 1. NAVIGATION CONTROL BAR -->
+  <nav id="global-nav" class="fixed top-0 left-0 w-full px-6 md:px-12 py-5 flex items-center justify-between border-b border-white/10 z-50 transition-all duration-300 backdrop-blur-[2px] text-white">
+    <a href="#" class="font-display font-bold text-lg md:text-xl tracking-tight flex items-center gap-1">
+      Garden Lane Florals
+      <span class="text-[9px] align-super border border-current rounded-full w-4 h-4 inline-flex items-center justify-center font-sans font-bold leading-none">R</span>
+    </a>
+    
+    <div class="hidden md:flex items-center gap-10 font-sans text-xs font-semibold tracking-spaced uppercase">
+      <a href="#gallery" class="hover:opacity-60 transition-opacity">Gallery</a>
+      <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
+      <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+    </div>
+
+    <div>
+      <button class="font-sans text-xs font-semibold tracking-spaced uppercase border border-current/20 px-4 py-2 rounded-full hover:bg-current/10 transition-colors">
+        Menu
+      </button>
+    </div>
+  </nav>
+
+  <!-- 2. FULL SCREEN HERO HEROINE DISPLAY -->
+  <header class="relative w-full h-screen overflow-hidden bg-mutedBg flex flex-col justify-center items-center">
+    <!-- Atmospheric Background Video Block -->
+    <video 
+      src="https://videos.bravebrand.com/Florist/hf_20260420_021717_1e047f0e-248c-4227-b135-70a90ba9cc0a.mp4"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      preload="auto"
+      class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none z-0"
+    ></video>
+    
+    <!-- Ambient Content Contrast Veil -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none z-10"></div>
+
+    <!-- Core Brand Typographic Statement -->
+    <div class="relative w-full text-center px-4 z-20 pointer-events-none mt-12">
+      <h1 class="wordmark-massive wordmark-massive-overlay select-none">
+        Garden Lane Florals
+      </h1>
+    </div>
+
+    <!-- Interactive Floated Retail Badge -->
+    <div class="absolute bottom-8 left-6 md:left-12 z-20">
+      <a href="#gallery" class="scallop-badge">
+        <span class="scallop-badge-eyebrow">New</span>
+        <span class="scallop-badge-main">10% Off Your First Order</span>
+        <span class="scallop-badge-footer">Special</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 3. BRAND MANIFESTO SECTION -->
+    <section id="about" class="bg-background px-6 py-24 md:py-36 border-b border-borderWarm">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="font-sans text-[11px] font-semibold tracking-spaced text-foreground uppercase block mb-4">
+          Who We Are
+        </span>
+        <h2 class="font-display font-semibold text-3xl md:text-5xl leading-[1.2] tracking-tight text-foreground max-w-3xl mx-auto font-variation-settings: 'opsz' 96, 'SOFT' 100">
+          We're Garden Lane Florals<span class="text-lg align-super ml-0.5">®</span> and we're here to help you find your floral story.
+        </h2>
+        <div class="mt-12">
+          <a href="#contact" class="cta-pill-yellow">
+            About Our Studio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONTINUOUS PRODUCT TICKER SCENE -->
+    <section id="gallery" class="bg-background py-16 md:py-24 border-b border-borderWarm overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 mb-12 md:mb-16 text-center">
+        <span class="font-sans text-[11px] font-semibold tracking-spaced text-foreground uppercase block mb-4">
+          The Collection
+        </span>
+        <h3 class="font-display font-semibold text-2xl md:text-4xl text-foreground font-variation-settings: 'opsz' 96">
+          Bouquets, garden flowers, and seasonal arrangements.
+        </h3>
+      </div>
+
+      <!-- Infinite Marquee Track Container -->
+      <div class="product-ticker">
+        <div class="product-ticker-track" id="ticker-target">
+          <!-- Item Nodes will be systematically populated & mirrored dynamically via JavaScript below -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FULL SCREEN SCROLL-LINKED KINETIC INTERIOR VIDEO GRID -->
+    <section id="scrub-container" class="relative w-full h-[250vh]">
+      <!-- Sticky Processing Environment Window -->
+      <div class="sticky top-0 w-full h-screen overflow-hidden bg-mutedBg">
+        <video 
+          id="scrub-video"
+          src="https://videos.bravebrand.com/Florist/hf_20260420_022405_94f944b7-20ef-4b28-8b99-0f7ca6861c46.mp4"
+          muted 
+          playsinline 
+          preload="auto"
+          class="absolute inset-0 w-full h-full object-cover z-0"
+        ></video>
+
+        <!-- Ambient Contrast Gradient -->
+        <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 via-black/10 to-transparent pointer-events-none z-10"></div>
+
+        <!-- Overlaid Context Elements -->
+        <div id="scrub-text-box" class="absolute inset-x-0 top-[16%] md:top-[20%] text-center px-6 z-20 pointer-events-none transition-opacity duration-500">
+          <span class="font-sans text-[11px] font-semibold tracking-spaced text-white uppercase drop-shadow-sm">
+            In The Studio
+          </span>
+          <h2 class="font-display font-semibold text-3xl md:text-5xl text-white mt-4 max-w-xl mx-auto leading-tight drop-shadow-md">
+            Every arrangement, hand-tied on Garden Lane.
+          </h2>
+        </div>
+
+        <!-- Scroll Assistance Prompt UI -->
+        <div class="absolute top-6 right-6 bg-background text-foreground px-4 py-2 rounded-full font-sans text-[10px] font-bold tracking-wider uppercase inline-flex items-center gap-2 shadow-sm z-20">
+          <span>↓</span> Scroll to pan film
+        </div>
+
+        <!-- Kinematic Visual Progress Pipeline Bar -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-3/5 max-w-xs h-[3px] bg-white/30 rounded-full overflow-hidden z-20">
+          <div id="scrub-progress-fill" class="h-full w-0 bg-accentYellow rounded-full transition-all duration-100 ease-out"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. HIGH-TRUST FIXED EDITORIAL RETAIL PORTRAITS -->
+    <section class="bg-background px-6 py-24 md:py-36 border-b border-borderWarm">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 md:mb-24">
+          <span class="font-sans text-[11px] font-semibold tracking-spaced text-foreground uppercase block mb-4">
+            Now in Season
+          </span>
+          <h2 class="font-display font-semibold text-3xl md:text-5xl text-foreground font-variation-settings: 'opsz' 96">
+            What's coming up next at Garden Lane.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          <!-- Frame Card One -->
+          <div class="group cursor-pointer">
+            <div class="image-cell-rounded image-cell-rounded-portrait mb-6 transition-transform duration-500 group-hover:-translate-y-2">
+              <img src="https://playground.bravebrand.com/assets/prompt-media/boutique-peonies.webp" alt="Seasonal Curated Peonies Arrangement" class="transition-transform duration-700 group-hover:scale-105">
+            </div>
+            <div class="text-center">
+              <h4 class="font-display font-semibold text-2xl text-foreground mb-2">Peony Week</h4>
+              <p class="font-sans text-sm text-mutedText max-w-xs mx-auto leading-relaxed">
+                For the next ten days only — peonies in every colour they grow.
+              </p>
+            </div>
+          </div>
+
+          <!-- Frame Card Two -->
+          <div class="group cursor-pointer">
+            <div class="image-cell-rounded image-cell-rounded-portrait mb-6 transition-transform duration-500 group-hover:-translate-y-2">
+              <img src="https://playground.bravebrand.com/assets/prompt-media/boutique-wedding.webp" alt="Wedding Floral Architecture Concept" class="transition-transform duration-700 group-hover:scale-105">
+            </div>
+            <div class="text-center">
+              <h4 class="font-display font-semibold text-2xl text-foreground mb-2">Wedding Season</h4>
+              <p class="font-sans text-sm text-mutedText max-w-xs mx-auto leading-relaxed">
+                Bookings open through October. Custom arrangements for the day.
+              </p>
+            </div>
+          </div>
+
+          <!-- Frame Card Three -->
+          <div class="group cursor-pointer">
+            <div class="image-cell-rounded image-cell-rounded-portrait mb-6 transition-transform duration-500 group-hover:-translate-y-2">
+              <img src="https://playground.bravebrand.com/assets/prompt-media/boutique-workshop.webp" alt="Floristry Artisanal Workshop Assembly" class="transition-transform duration-700 group-hover:scale-105">
+            </div>
+            <div class="text-center">
+              <h4 class="font-display font-semibold text-2xl text-foreground mb-2">Saturday Workshops</h4>
+              <p class="font-sans text-sm text-mutedText max-w-xs mx-auto leading-relaxed">
+                Learn arranging, hand-tying, and seasonal styling. Twelve seats per session.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONVERSATIONAL BRAND NEWSLETTER ENGAGEMENT -->
+    <section id="contact" class="bg-background px-6 py-24 md:py-36">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="font-sans text-[11px] font-semibold tracking-spaced text-foreground uppercase block mb-4">
+          Stay in Touch
+        </span>
+        <h2 class="font-display font-semibold text-3xl md:text-5xl text-foreground mb-6 leading-tight">
+          Notes from the studio, every two weeks.
+        </h2>
+        <p class="font-sans text-base text-mutedText mb-10 max-w-lg mx-auto leading-relaxed">
+          What's blooming, what's coming up, what's on the bench this week. No spam, no upsells — just notes from the people behind the flowers.
+        </p>
+        
+        <!-- Registration Capture Interface Grid -->
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing to our studio updates!');">
+          <input 
+            type="email" 
+            required
+            placeholder="hello@yourname.com" 
+            class="flex-1 px-6 py-3.5 bg-background border border-borderWarm rounded-full font-sans text-sm text-foreground placeholder:text-mutedText/60 focus:outline-none focus:border-foreground transition-colors shadow-sm"
+          >
+          <button type="submit" class="cta-pill-yellow whitespace-nowrap justify-center">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. HIGH-FIDELITY FOOTER SIGN-OFF PLATFORM -->
+  <footer class="bg-background border-t border-borderWarm px-6 md:px-12 pt-16 pb-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        
+        <!-- Brand Signature Summary -->
+        <div class="md:col-span-4">
+          <div class="font-display font-bold text-3xl text-foreground mb-4 inline-flex items-center gap-1">
+            Garden Lane
+            <span class="text-xs align-super border border-foreground rounded-full w-5 h-5 inline-flex items-center justify-center font-sans font-bold">R</span>
+          </div>
+          <p class="font-sans text-sm text-mutedText max-w-xs leading-relaxed">
+            A boutique florist in the heart of the city. Locally sourced, seasonally arranged, hand-delivered.
+          </p>
+        </div>
+
+        <!-- Directory Category Column One -->
+        <div class="md:col-span-2">
+          <span class="font-sans text-[10px] font-bold tracking-spaced text-foreground uppercase block mb-4">Shop</span>
+          <ul class="space-y-3 font-sans text-sm font-medium">
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Bouquets</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Arrangements</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Gift Cards</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Subscriptions</a></li>
+          </ul>
+        </div>
+
+        <!-- Directory Category Column Two -->
+        <div class="md:col-span-2">
+          <span class="font-sans text-[10px] font-bold tracking-spaced text-foreground uppercase block mb-4">About</span>
+          <ul class="space-y-3 font-sans text-sm font-medium">
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Our Story</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">The Studio</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Workshops</a></li>
+            <li><a href="#" class="text-mutedText hover:text-foreground transition-colors">Press</a></li>
+          </ul>
+        </div>
+
+        <!-- Location Coordinates Configuration -->
+        <div class="md:col-span-4 font-sans text-sm">
+          <span class="font-sans text-[10px] font-bold tracking-spaced text-foreground uppercase block mb-4">Find Us</span>
+          <p class="text-foreground font-medium leading-relaxed mb-2">
+            82 Garden Lane<br> Hackney, London E8 4QH
+          </p>
+          <p class="text-mutedText mb-4 text-xs">
+            Tuesday–Saturday, 9am–6pm
+          </p>
+          <p class="text-foreground font-semibold">
+            hello@gardenlaneflorals.co.uk
+          </p>
+        </div>
+      </div>
+
+      <!-- Legal Platform Ledger -->
+      <div class="border-t border-borderWarm pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="font-sans text-xs text-mutedText">
+          &copy; 2026 Garden Lane Florals. All rights reserved.
+        </div>
+        <div class="flex gap-8 font-sans text-xs text-mutedText font-medium">
+          <a href="#" class="hover:text-foreground transition-colors">Terms</a>
+          <a href="#" class="hover:text-foreground transition-colors">Privacy</a>
+          <a href="#" class="hover:text-foreground transition-colors">Delivery Rules</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- RENDER & KINETIC ENGINE CORE SCRIPTS -->
+  <script>
+    // DATA MAPPING LAYER
+    const retailProducts = [
+      { name: 'The Sunday Bouquet', desc: 'Seasonal mixed stems', price: '£45', img: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=600&q=80' },
+      { name: 'The Garden Posy', desc: 'Hand-tied wildflowers', price: '£38', img: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=600&q=80' },
+      { name: 'White & Cream', desc: 'Classic white arrangement', price: '£52', img: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80' },
+      { name: 'Peony Season', desc: 'Limited spring availability', price: '£58', img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80' },
+      { name: 'The Bedside Stem', desc: 'Single statement bloom', price: '£18', img: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=600&q=80' },
+      { name: 'Wedding Day Greens', desc: 'Foliage and accents', price: '£35', img: 'https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&w=600&q=80' },
+      { name: 'The Workshop Pick', desc: "Florist's choice this week", price: '£48', img: 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=600&q=80' },
+      { name: 'Anniversary Roses', desc: 'Twelve garden roses', price: '£65', img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80' }
+    ];
+
+    // CONSTRUCT & GENERATE SEAMLESS MARQUEE NODES
+    const tickerTrack = document.getElementById('ticker-target');
+    
+    function generateProductTemplate(product) {
+      return `
+        <div class="w-[240px] md:w-[280px] flex-shrink-0 group block cursor-pointer">
+          <div class="image-cell-rounded image-cell-rounded-square mb-4 transition-transform duration-300 group-hover:-translate-y-1">
+            <img src="${product.img}" alt="${product.name}" loading="lazy">
+          </div>
+          <div class="px-1 text-left">
+            <h4 class="font-display font-semibold text-lg text-foreground leading-tight mb-1">${product.name}</h4>
+            <p class="font-sans text-xs text-mutedText">${product.desc}</p>
+            <div class="mt-2 font-display font-semibold text-base text-foreground">${product.price}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Double-buffer array layout context to achieve perfect infinite tracking loops
+    const doubleStream = [...retailProducts, ...retailProducts];
+    tickerTrack.innerHTML = doubleStream.map(p => generateProductTemplate(p)).join('');
+
+    // STICKY NAVIGATION CONTROLLER
+    const navbar = document.getElementById('global-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight * 0.75) {
+        navbar.classList.remove('bg-transparent', 'text-white', 'border-white/10');
+        navbar.classList.add('bg-background', 'text-foreground', 'border-borderWarm', 'shadow-sm');
+      } else {
+        navbar.classList.remove('bg-background', 'text-foreground', 'border-borderWarm', 'shadow-sm');
+        navbar.classList.add('bg-transparent', 'text-white', 'border-white/10');
+      }
+    }, { passive: true });
+
+
+    // DAMPED KINETIC INTERIOR VIDEO SCRUBBING SYSTEM
+    const scrubContainer = document.getElementById('scrub-container');
+    const scrubVideo = document.getElementById('scrub-video');
+    const progressFill = document.getElementById('scrub-progress-fill');
+    const textBox = document.getElementById('scrub-text-box');
+
+    let targetProgress = 0;
+    let currentProgress = 0;
+    const lerpFactor = 0.08; // Equivalent to the Framer Motion spring mass damping mechanics
+
+    // Calculated linear interpolation function logic mapping
+    window.addEventListener('scroll', () => {
+      const containerRect = scrubContainer.getBoundingClientRect();
+      const scrolledPastTop = -containerRect.top;
+      const scrubHeight = containerRect.height - window.innerHeight;
+      
+      let rawProgress = scrolledPastTop / scrubHeight;
+      targetProgress = Math.max(0, Math.min(1, rawProgress));
+    }, { passive: true });
+
+    // Continuous Frame Request Loop Handler
+    function processInterpolationLoop() {
+      // Smooth interpolation calculation
+      currentProgress += (targetProgress - currentProgress) * lerpFactor;
+      
+      // Sync processing calculations with visual pipeline elements
+      if (scrubVideo && scrubVideo.duration) {
+        scrubVideo.currentTime = currentProgress * scrubVideo.duration;
+      }
+      
+      // Update programmatic status layout bars
+      progressFill.style.width = `${currentProgress * 100}%`;
+
+      // Apply opacity scaling transformations to context text arrays
+      if (currentProgress > 0.45) {
+        textBox.style.opacity = '0';
+        textBox.style.transform = 'translateY(-10px)';
+      } else {
+        textBox.style.opacity = '1';
+        textBox.style.transform = 'translateY(0px)';
+      }
+
+      requestAnimationFrame(processInterpolationLoop);
+    }
+
+    // Trigger calculation engine loop once elements complete native rendering
+    scrubVideo.addEventListener('loadedmetadata', () => {
+      requestAnimationFrame(processInterpolationLoop);
+    });
+    
+    // Safety fallback initialization trigger
+    setTimeout(() => {
+      requestAnimationFrame(processInterpolationLoop);
+    }, 1000);
+  </script>
+</body>
+</html>

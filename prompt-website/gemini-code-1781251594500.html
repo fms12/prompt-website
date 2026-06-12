@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Altitude — A Calmer Writing Environment</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["'Instrument Serif'", "serif"],
+            body: ["'Inter'", "sans-serif"],
+            mono: ["'JetBrains Mono'", "monospace"]
+          },
+          colors: {
+            paper: '#F8F5F0',        /* Warm paper background */
+            ink: '#161B2A',          /* Deep blue-black ink */
+            skyAccent: '#2680D8',    /* Saturated sky blue accent */
+            skyDeep: '#2A5F9F',      /* Shadow blue for gradient fallback */
+            skyWash: '#E8F1FB',      /* Pale sky wash background element */
+            paleGrey: '#A7ABB7',     /* Split-tonal secondary heading tone */
+            borderWarm: '#E0DAD0',   /* Adjusted warm baseline rule */
+            mutedText: '#5B6176'     /* Secondary body text slate */
+          },
+          letterSpacing: {
+            tightest: '-0.03em',
+            normalTight: '-0.015em',
+            spaced: '0.01em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F5F0;
+      color: #161B2A;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MASSIVE INTERPOLATING SERIF DISPLAY LAYER */
+    .alt-headline {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+    }
+    .alt-tone-strong {
+      color: #161B2A;
+    }
+    .alt-tone-soft {
+      color: rgba(22, 27, 42, 0.4);
+    }
+
+    /* CRISP INTERACTIVE COMPONENT SHAPES */
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #161B2A;
+      color: #F8F5F0;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-primary:hover {
+      background: #2680D8;
+      transform: translateY(-1px);
+    }
+
+    .cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #161B2A;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(21, 27, 42, 0.15);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+    .cta-ghost:hover {
+      border-color: rgba(38, 128, 216, 0.5);
+      background: rgba(38, 128, 216, 0.04);
+    }
+
+    /* MONOSPACED UI SIGNAL LABELS */
+    .mono-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #5B6176;
+    }
+
+    /* LIQUID INTERSECTION ENTRY ENGINES */
+    .reveal-view {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-view.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CUSTOM ACCORDION TRIANGLE ANCHOR */
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+</head>
+<body class="bg-paper text-ink font-body antialiased selection:bg-skyAccent/10">
+
+  <nav class="w-full flex items-center justify-between px-6 md:px-12 lg:px-16 py-6 border-b border-borderWarm bg-paper z-40 relative">
+    <a href="#" class="font-display text-2xl md:text-3xl text-ink tracking-tight flex items-baseline select-none">
+      Altitude<sup class="font-body text-[10px] text-mutedText ml-0.5 tracking-normal font-normal">®</sup>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 lg:gap-10">
+      <a href="#features" class="font-body text-sm font-semibold text-ink transition-colors">Features</a>
+      <a href="#editor" class="font-body text-sm font-normal text-ink/60 hover:text-ink transition-colors">Interface</a>
+      <a href="#workflow" class="font-body text-sm font-normal text-ink/60 hover:text-ink transition-colors">Workflow</a>
+      <a href="#pricing" class="font-body text-sm font-normal text-ink/60 hover:text-ink transition-colors">Pricing</a>
+    </div>
+
+    <div>
+      <a href="#pricing" class="bg-ink text-paper px-5 py-2.5 rounded-full font-body font-semibold text-xs tracking-wide uppercase hover:bg-skyAccent transition-colors duration-200">
+        Start writing
+      </a>
+    </div>
+  </nav>
+
+  <header class="bg-paper w-full flex flex-col pt-12 md:pt-16 overflow-hidden relative">
+    <div class="w-full flex flex-col items-center justify-center px-6 md:px-12 text-center z-10">
+      
+      <h1 class="font-display font-normal text-center w-full leading-[1.02] tracking-tightest mb-6 lg:whitespace-nowrap select-none"
+          style="font-size: clamp(2.3rem, 7.2vw, 7.2rem); max-width: 100%;">
+        <span class="text-ink">A calmer way</span>
+        <span class="text-ink/40">to write down</span>
+        <span class="text-ink">what you think.</span>
+      </h1>
+
+      <p class="font-body font-normal text-center text-base md:text-lg text-ink/60 max-w-2xl mx-auto leading-relaxed mb-8">
+        A writing tool that stays out of your way. No features you don't need, <br class="hidden md:inline"> no friction when you're ready to start.
+      </p>
+
+      <div class="mb-14 md:mb-16">
+        <a href="#pricing" class="bg-ink text-paper px-10 py-4 rounded-full font-body font-semibold text-sm hover:bg-skyAccent transition-colors duration-300 shadow-sm">
+          Start writing
+        </a>
+      </div>
+    </div>
+
+    <div class="w-full px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
+      <div class="relative w-full aspect-[21/10] md:aspect-[21/8] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm bg-gradient-to-b from-skyDeep to-skyAccent">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-skyDeep/20 via-transparent to-paper/30 pointer-events-none z-10"></div>
+
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="metadata"
+          class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none z-0"
+        >
+          <source src="https://videos.bravebrand.com/hf_20260418_003755_1fb0623f-4894-4623-8d48-845e712b27c7.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute bottom-4 right-5 md:bottom-6 md:right-8 mono-label text-white/90 tracking-wider text-[9px] md:text-[10px] z-20 bg-ink/10 backdrop-blur-sm px-3 py-1 rounded">
+          TRUSTED BY 12,400 WRITERS · V 2.0 NOW SHIPPING
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="bg-paper py-20 md:py-32 border-t border-borderWarm relative reveal-view">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="text-center mb-16 md:mb-24">
+        <span class="mono-label block mb-3">The Tool</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl text-center max-w-3xl mx-auto">
+          <span class="alt-tone-strong">Built for thinking,</span>
+          <span class="alt-tone-soft">not for</span>
+          <span class="alt-tone-strong">formatting.</span>
+        </h2>
+        <p class="font-body text-base text-mutedText mt-4 max-w-md mx-auto">
+          We focus on the interface so you can focus on the clarity of your raw composition.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <div class="bg-white border border-borderWarm rounded-2xl overflow-hidden transition-all duration-300 hover:border-skyAccent/20 hover:shadow-md flex flex-col justify-between">
+          <div class="aspect-[16/10] w-full overflow-hidden bg-skyWash">
+            <img src="https://playground.bravebrand.com/assets/prompt-media/altitude-card-01.webp" alt="Distraction-free workspace overview illustration" class="w-full h-full object-cover select-none">
+          </div>
+          <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl lg:text-3xl text-ink mb-3 tracking-wide">Distraction-free editor</h3>
+              <p class="font-body text-sm text-mutedText leading-relaxed mb-6">
+                Just a page, a cursor, and your words. No toolbars to configure, no menus to learn. Start typing and the interface steps back.
+              </p>
+            </div>
+            <div class="mono-label text-mutedText/70 text-[10px] pt-4 border-t border-borderWarm tracking-wider">
+              ⌘K TO COMMAND · MARKDOWN NATIVE
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl overflow-hidden transition-all duration-300 hover:border-skyAccent/20 hover:shadow-md flex flex-col justify-between">
+          <div class="aspect-[16/10] w-full overflow-hidden bg-skyWash">
+            <img src="https://playground.bravebrand.com/assets/prompt-media/altitude-card-02.webp" alt="Integrated system notebook layout" class="w-full h-full object-cover select-none">
+          </div>
+          <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl lg:text-3xl text-ink mb-3 tracking-wide">Notes, journals, & drafts</h3>
+              <p class="font-body text-sm text-mutedText leading-relaxed mb-6">
+                Your daily notes, your long-form drafts, your reading highlights — organised the way you think, not how an app demands.
+              </p>
+            </div>
+            <div class="mono-label text-mutedText/70 text-[10px] pt-4 border-t border-borderWarm tracking-wider">
+              BACKLINKS · GRAPH VIEW · TAGS
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl overflow-hidden transition-all duration-300 hover:border-skyAccent/20 hover:shadow-md flex flex-col justify-between">
+          <div class="aspect-[16/10] w-full overflow-hidden bg-skyWash">
+            <img src="https://playground.bravebrand.com/assets/prompt-media/altitude-card-03.webp" alt="Immutable open data pipeline schematic" class="w-full h-full object-cover select-none">
+          </div>
+          <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl lg:text-3xl text-ink mb-3 tracking-wide">You own everything</h3>
+              <p class="font-body text-sm text-mutedText leading-relaxed mb-6">
+                Every word you write is plain markdown. Export at any time. No vendor lock-in. No proprietary format. No subscription to access your own files.
+              </p>
+            </div>
+            <div class="mono-label text-mutedText/70 text-[10px] pt-4 border-t border-borderWarm tracking-wider">
+              LOCAL-FIRST · MARKDOWN · PLAIN TEXT
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="editor" class="bg-paper py-20 md:py-28 border-t border-borderWarm reveal-view">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="w-full mb-12">
+        <span class="mono-label block mb-3">Inside The App</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl text-left max-w-2xl mb-8">
+          <span class="alt-tone-strong">An editor</span>
+          <span class="alt-tone-soft">that gets</span>
+          <span class="alt-tone-strong">out of the way.</span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl font-sans text-sm md:text-base text-mutedText leading-relaxed">
+          <p>
+            Most writing apps assume you want features. Buttons everywhere. Panels, sidebars, settings. When you open a blank document, you're greeted by chrome before you see the page.
+          </p>
+          <p>
+            This is different. Open a new note and you see: a cursor. That's it. Every other affordance is reachable by keyboard or by typing. The editor stays invisible until you need it.
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full rounded-2xl overflow-hidden border border-borderWarm shadow-xl bg-white aspect-[16/10] relative select-none">
+        <div class="absolute inset-0 p-6 md:p-14 lg:p-16 flex flex-col">
+          
+          <div class="mono-label text-mutedText/60 text-[10px] md:text-xs mb-8 flex flex-wrap items-center gap-2 md:gap-4 border-b border-paper pb-4">
+            <span>ESSAYS / ON PATIENCE.MD</span>
+            <span class="text-borderWarm">•</span>
+            <span>1,247 WORDS</span>
+            <span class="text-borderWarm">•</span>
+            <span>AUTOSAVED 2 MIN AGO</span>
+          </div>
+
+          <div class="font-display font-normal text-2xl md:text-4xl text-ink leading-tight tracking-tight mb-6">
+            On patience, and working at your own pace.
+          </div>
+          
+          <div class="font-body text-sm md:text-base text-ink/80 leading-relaxed space-y-4 max-w-2xl font-normal">
+            <p>
+              I have been trying to do fewer things. Not slower — just fewer. The difference matters. Slower things done badly don't add up. Fewer things done well, do.
+            </p>
+            <p>
+              This essay is a note to myself from six months ago. I wrote the first draft in a café in October and I've been returning to it since. Every edit brings clarity, not complexity.
+            </p>
+            <div class="inline-block w-2 h-5 bg-skyAccent animate-pulse align-middle ml-0.5"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="workflow" class="bg-paper py-20 md:py-28 border-t border-borderWarm reveal-view">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="mb-14">
+        <span class="mono-label block mb-3">How It Works</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl text-left">
+          <span class="alt-tone-strong">A daily writing practice,</span>
+          <span class="alt-tone-soft">in three</span>
+          <span class="alt-tone-strong">small steps.</span>
+        </h2>
+      </div>
+
+      <div class="space-y-5">
+        
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-2">
+            <span class="font-display font-normal text-4xl md:text-6xl text-skyAccent tracking-tight block">01</span>
+          </div>
+          <div class="md:col-span-7">
+            <h3 class="font-display font-normal text-xl md:text-2xl text-ink mb-1">Write one page, one morning a day.</h3>
+            <p class="font-body text-sm text-mutedText leading-relaxed">
+              Open the app. Write for ten minutes, whatever comes up. Don't edit. Close it. That's the whole practice. The compounding is the point.
+            </p>
+          </div>
+          <div class="md:col-span-3 md:text-right border-t md:border-t-0 border-paper pt-4 md:pt-0">
+            <div class="mono-label text-[10px] space-y-1 text-mutedText/80">
+              <div>AVG. SESSION: 11 MIN</div>
+              <div>RECOMMENDED: 5 DAYS/WK</div>
+              <div>TARGET: MORNING</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-2">
+            <span class="font-display font-normal text-4xl md:text-6xl text-skyAccent tracking-tight block">02</span>
+          </div>
+          <div class="md:col-span-7">
+            <h3 class="font-display font-normal text-xl md:text-2xl text-ink mb-1">Let your notes accumulate.</h3>
+            <p class="font-body text-sm text-mutedText leading-relaxed">
+              Every page is saved in a searchable library. Link between notes naturally. Tag them if you want, don't if you don't. The system adapts to you, not the other way.
+            </p>
+          </div>
+          <div class="md:col-span-3 md:text-right border-t md:border-t-0 border-paper pt-4 md:pt-0">
+            <div class="mono-label text-[10px] space-y-1 text-mutedText/80">
+              <div>LOCAL-FIRST SEARCH</div>
+              <div>BIDIRECTIONAL LINKS</div>
+              <div>OPTIONAL TAGS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-2">
+            <span class="font-display font-normal text-4xl md:text-6xl text-skyAccent tracking-tight block">03</span>
+          </div>
+          <div class="md:col-span-7">
+            <h3 class="font-display font-normal text-xl md:text-2xl text-ink mb-1">Find your thinking, months later.</h3>
+            <p class="font-body text-sm text-mutedText leading-relaxed">
+              Search by idea, not by filename. The system surfaces related notes as you type. What you wrote three months ago becomes a living library, not a folder you forgot about.
+            </p>
+          </div>
+          <div class="md:col-span-3 md:text-right border-t md:border-t-0 border-paper pt-4 md:pt-0">
+            <div class="mono-label text-[10px] space-y-1 text-mutedText/80">
+              <div>INSTANT INDEXING</div>
+              <div>CONTEXT SURFACING</div>
+              <div>DAILY RESURFACING</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-8 px-6 md:px-12 lg:px-16 overflow-hidden reveal-view">
+    <div class="max-w-[1600px] mx-auto">
+      <div class="relative w-full aspect-[21/9] md:aspect-[21/8] rounded-2xl md:rounded-3xl overflow-hidden bg-skyWash shadow-inner">
+        <div class="absolute inset-0 bg-gradient-to-t from-paper/10 via-transparent to-transparent pointer-events-none z-10"></div>
+        
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="metadata"
+          class="w-full h-full object-cover select-none pointer-events-none absolute inset-0"
+        >
+          <source src="https://videos.bravebrand.com/Air/hf_20260418_012705_041cc174-b51a-4693-8420-dc404ed08e93.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute bottom-4 right-5 md:bottom-6 md:right-8 mono-label text-white/90 tracking-widest text-[9px]">
+          A QUIETER INTERNET · WRITING IS THINKING
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-20 md:py-28 border-t border-borderWarm reveal-view">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <div class="text-center mb-16">
+        <span class="mono-label block mb-3">What Writers Are Saying</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl">
+          <span class="alt-tone-strong">Trusted by people</span>
+          <span class="alt-tone-soft">who write</span>
+          <span class="alt-tone-strong">for a living.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 lg:p-8 flex flex-col justify-between">
+          <p class="font-display font-normal text-xl text-ink leading-relaxed mb-8">
+            "It's the first writing app I've kept using past a month. It just… lets me write. No nagging features, no upgrade prompts, no gamification."
+          </p>
+          <div class="pt-5 border-t border-borderWarm flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-skyWash flex items-center justify-center font-display font-bold text-xs text-skyAccent">ER</div>
+            <div>
+              <h4 class="font-body font-semibold text-xs text-ink">Elena R.</h4>
+              <div class="mono-label text-[9px] tracking-tight text-mutedText/70">NEWSLETTER WRITER · 8K SUBS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 lg:p-8 flex flex-col justify-between">
+          <p class="font-display font-normal text-xl text-ink leading-relaxed mb-8">
+            "I've tried every note app. This is the one I stayed with. The fact that everything is plain markdown means I trust it won't disappear on me."
+          </p>
+          <div class="pt-5 border-t border-borderWarm flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-skyWash flex items-center justify-center font-display font-bold text-xs text-skyAccent">JK</div>
+            <div>
+              <h4 class="font-body font-semibold text-xs text-ink">James K.</h4>
+              <div class="mono-label text-[9px] tracking-tight text-mutedText/70">INDEPENDENT RESEARCHER</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-borderWarm rounded-2xl p-6 lg:p-8 flex flex-col justify-between">
+          <p class="font-display font-normal text-xl text-ink leading-relaxed mb-8">
+            "I open it every morning. Ten minutes of writing before I do anything else. It's become the most important part of my day."
+          </p>
+          <div class="pt-5 border-t border-borderWarm flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-skyWash flex items-center justify-center font-display font-bold text-xs text-skyAccent">ML</div>
+            <div>
+              <h4 class="font-body font-semibold text-xs text-ink">Maya L.</h4>
+              <div class="mono-label text-[9px] tracking-tight text-mutedText/70">PRODUCT STRATEGIST</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="bg-paper py-20 md:py-28 border-t border-borderWarm reveal-view">
+    <div class="max-w-4xl mx-auto px-6">
+      
+      <div class="text-center mb-14">
+        <span class="mono-label block mb-3">Pricing</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl">
+          <span class="alt-tone-strong">Simple pricing.</span>
+          <span class="alt-tone-soft">Honest</span>
+          <span class="alt-tone-strong">tiers.</span>
+        </h2>
+        <p class="font-body text-sm md:text-base text-mutedText mt-4 max-w-md mx-auto">
+          Free forever for personal use. Pay when you want the full system. No trials, no decoys, no surprise upgrades.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        
+        <div class="bg-white border border-borderWarm rounded-2xl p-8 flex flex-col justify-between min-h-[460px]">
+          <div>
+            <div class="mono-label text-mutedText/60 mb-4">Forever Free</div>
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="font-display font-normal text-5xl text-ink">$0</span>
+            </div>
+            <p class="font-body text-xs text-mutedText mb-6">Everything you need to start writing.</p>
+            
+            <ul class="space-y-3 pt-6 border-t border-paper mb-8 font-sans text-xs text-ink/90">
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Unlimited notes & journals
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Full markdown editor
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Local-first storage
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Export anytime
+              </li>
+            </ul>
+          </div>
+          <button class="cta-ghost w-full text-center">Start writing free</button>
+        </div>
+
+        <div class="bg-white border-2 border-skyAccent rounded-2xl p-8 flex flex-col justify-between min-h-[480px] relative shadow-lg">
+          <div class="absolute -top-3.5 left-6 bg-skyAccent text-paper px-3 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full">
+            Most popular
+          </div>
+          <div>
+            <div class="mono-label text-skyAccent mb-4">Pro Plan</div>
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="font-display font-normal text-5xl text-ink">$9</span>
+              <span class="font-body text-sm text-mutedText">/mo</span>
+            </div>
+            <p class="font-body text-xs text-mutedText mb-6">Billed annually — two months free.</p>
+            
+            <ul class="space-y-3 pt-6 border-t border-paper mb-8 font-sans text-xs text-ink/90">
+              <li class="flex items-center gap-2.5 font-medium">
+                <span class="text-skyAccent text-base leading-none">✓</span> Everything in Free
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Multi-device encrypted sync
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Graph view & backlinks visualization
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> Detailed version deep history
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-skyAccent text-base leading-none">✓</span> One-click publishing to web
+              </li>
+            </ul>
+          </div>
+          <button class="cta-primary w-full text-center">Upgrade to Pro</button>
+        </div>
+
+      </div>
+
+      <div class="mt-10 font-body text-[11px] text-mutedText text-center max-w-md mx-auto">
+        All plans include full export, lifetime access to your notes, and the freedom to leave any time with everything intact.
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-20 md:py-28 border-t border-borderWarm reveal-view">
+    <div class="max-w-3xl mx-auto px-6">
+      
+      <div class="text-center mb-12">
+        <span class="mono-label block mb-3">Questions</span>
+        <h2 class="alt-headline text-4xl md:text-5xl lg:text-6xl">
+          <span class="alt-tone-strong">Frequently asked,</span>
+          <span class="alt-tone-soft">honestly</span>
+          <span class="alt-tone-strong">answered.</span>
+        </h2>
+      </div>
+
+      <div class="border-t border-borderWarm divide-y divide-borderWarm">
+        
+        <details class="py-5 group">
+          <summary class="flex items-center justify-between cursor-pointer py-2 text-left">
+            <span class="font-display font-normal text-xl text-ink pr-4">Is my data really mine?</span>
+            <span class="text-mutedText/50 group-open:rotate-180 transition-transform duration-200 font-sans text-sm">↓</span>
+          </summary>
+          <div class="mt-3 font-body text-sm md:text-base text-mutedText leading-relaxed max-w-2xl pl-1">
+            Yes. Every note is stored as plain markdown, locally by default, optionally synced to your own cloud storage. Export at any time — no vendor lock, no proprietary format. If we disappeared tomorrow, your work would still be readable by any text editor.
+          </div>
+        </details>
+
+        <details class="py-5 group">
+          <summary class="flex items-center justify-between cursor-pointer py-2 text-left">
+            <span class="font-display font-normal text-xl text-ink pr-4">How is this different from Notion or Obsidian?</span>
+            <span class="text-mutedText/50 group-open:rotate-180 transition-transform duration-200 font-sans text-sm">↓</span>
+          </summary>
+          <div class="mt-3 font-body text-sm md:text-base text-mutedText leading-relaxed max-w-2xl pl-1">
+            Unlike Notion, Altitude is local-first, offline-native, and runs without loading database structures or heavy layouts. Unlike Obsidian, we optimize specifically for long-form prose and clear composition out of the box without requiring complex community plugin setups.
+          </div>
+        </details>
+
+        <details class="py-5 group">
+          <summary class="flex items-center justify-between cursor-pointer py-2 text-left">
+            <span class="font-display font-normal text-xl text-ink pr-4">Do I need to know markdown formatting syntax?</span>
+            <span class="text-mutedText/50 group-open:rotate-180 transition-transform duration-200 font-sans text-sm">↓</span>
+          </summary>
+          <div class="mt-3 font-body text-sm md:text-base text-mutedText leading-relaxed max-w-2xl pl-1">
+            Not at all. You can write normally without any special characters. If you wish to use headers or lists, standard formatting shortcuts apply automatically behind the scenes to keep text neat.
+          </div>
+        </details>
+
+        <details class="py-5 group">
+          <summary class="flex items-center justify-between cursor-pointer py-2 text-left">
+            <span class="font-display font-normal text-xl text-ink pr-4">Can I write completely offline?</span>
+            <span class="text-mutedText/50 group-open:rotate-180 transition-transform duration-200 font-sans text-sm">↓</span>
+          </summary>
+          <div class="mt-3 font-body text-sm md:text-base text-mutedText leading-relaxed max-w-2xl pl-1">
+            Yes. The app operates entirely from your local file system partition context. Cloud synchronization passes only execute once an active internet confirmation handshake occurs safely in your peripheral system.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper pt-20 md:pt-32 pb-14 px-6 md:px-12 lg:px-16 border-t border-borderWarm reveal-view">
+    <div class="max-w-4xl mx-auto text-center pb-16">
+      <span class="mono-label block mb-3">Ready When You Are</span>
+      <h2 class="font-display font-normal text-center w-full leading-[1.02] tracking-tightest mb-6" style="font-size: clamp(2rem, 5.5vw, 5.5rem);">
+        <span class="text-ink">A quieter place</span>
+        <span class="text-ink/40">to write down</span>
+        <span class="text-ink">what you think.</span>
+      </h2>
+      <p class="font-body text-sm text-mutedText max-w-xs mx-auto mb-8">
+        Start free. Keep using it. Pay when it's useful enough to upgrade.
+      </p>
+      
+      <div class="mb-6">
+        <a href="#pricing" class="cta-primary px-10 py-3.5 rounded-full text-sm font-semibold">Start writing</a>
+      </div>
+      
+      <div class="mono-label text-[9px] md:text-[10px] text-mutedText/60 tracking-widest">
+        NO CREDIT CARD · NO EMAIL REQUIRED · 30-SECOND SIGNUP
+      </div>
+    </div>
+
+    <div class="max-w-[1600px] mx-auto mt-6">
+      <div class="relative w-full aspect-[21/8] md:aspect-[21/6] rounded-2xl md:rounded-3xl overflow-hidden bg-skyWash">
+        <img 
+          src="https://playground.bravebrand.com/assets/prompt-media/altitude-wide.webp" 
+          alt="Cinematic linear high horizon overview landscape visual anchor asset" 
+          class="w-full h-full object-cover select-none pointer-events-none filter brightness-[0.98]"
+          loading="lazy"
+        >
+        <div class="absolute bottom-4 right-5 md:bottom-6 md:right-8 mono-label text-white/90 tracking-wider text-[9px]">
+          BUILT FOR PEOPLE WHO WRITE
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-paper border-t border-borderWarm py-12 px-6 md:px-12 lg:px-16">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        <div class="col-span-2">
+          <div class="font-display text-xl text-ink font-semibold mb-3">Altitude®</div>
+          <p class="font-body text-xs text-mutedText max-w-xs leading-relaxed">
+            A tool designed for writing, reading, and structural deep thought. Made for clarity, local accountability, and immutable storage standards.
+          </p>
+        </div>
+        <div>
+          <span class="mono-label text-[10px] block mb-3 text-ink font-semibold">Product</span>
+          <ul class="space-y-2 text-xs font-normal text-mutedText">
+            <li><a href="#" class="hover:text-ink transition-colors">Features</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Workflow</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Pricing</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="mono-label text-[10px] block mb-3 text-ink font-semibold">Writing</span>
+          <ul class="space-y-2 text-xs font-normal text-mutedText">
+            <li><a href="#" class="hover:text-ink transition-colors">Manifesto</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Blog</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Newsletter</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="mono-label text-[10px] block mb-3 text-ink font-semibold">Company</span>
+          <ul class="space-y-2 text-xs font-normal text-mutedText">
+            <li><a href="#" class="hover:text-ink transition-colors">About Us</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Privacy</a></li>
+            <li><a href="#" class="hover:text-ink transition-colors">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-borderWarm pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="mono-label text-[10px] text-mutedText/60">
+          © 2026 ALTITUDE · BUILT SLOWLY · LOCAL-FIRST
+        </div>
+        <div class="mono-label text-[10px] text-mutedText/70 tracking-normal normal-case italic font-display text-sm">
+          A tool for people who write.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer implementation mimicking Framer Motion whileInView
+    document.addEventListener("DOMContentLoaded", function () {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-40px",
+        threshold: 0.05
+      };
+
+      const viewObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            // Stop observing once animated into view context
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Bind runtime processing array variables to view containers
+      const animatedElements = document.querySelectorAll(".reveal-view");
+      animatedElements.forEach(el => {
+        viewObserver.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
