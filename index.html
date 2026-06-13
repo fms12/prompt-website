@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Engineer Portfolio — Fun. Build. Ship.</title>
+    <meta
+      name="description"
+      content="Personal showcase of high-end web platforms generated, structured, and shipped directly from custom prompt architectures."
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      .rise-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity;
+      }
+
+      .rise-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .monitor-glow {
+        transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .group:hover .monitor-glow {
+        box-shadow: 0 20px 38px -10px rgba(0, 0, 0, 0.15), 
+                    0 0 0 1px rgba(0, 0, 0, 0.1);
+        border-color: #111111;
+      }
+
+      .custom-highlight {
+        background: linear-gradient(120deg, #dfef4e 0%, #dfef4e 100%);
+        background-repeat: no-repeat;
+        background-size: 100% 40%;
+        background-position: 0 88%;
+        padding: 0 4px;
+      }
+    </style>
+  </head>
+  <body class="bg-[#f4f4f2] text-black antialiased font-['Inter_Tight']">
+    
+    <header class="px-[4vw] py-4 md:pt-7 md:pb-5 flex items-center justify-between gap-4 border-b border-black/10">
+      <a class="min-w-0 flex items-center gap-2 md:gap-3" aria-label="Home" href="/">
+        <h4 class="font-extrabold tracking-tight text-[1.75rem] md:text-[1.5rem] leading-[0.98] max-w-[15ch]">
+          M.S//BRAND
+        </h4>
+        <span class="hidden sm:inline text-[0.68rem] md:text-[0.7rem] font-semibold tracking-[0.15em] text-black/50 uppercase whitespace-nowrap">
+          / Build Library
+        </span>
+      </a>
+      <div class="flex items-center gap-4 text-[0.74rem] uppercase tracking-[0.18em] font-semibold text-black/60">
+        <a href="#builds" class="hover:text-black transition-colors">Builds</a>
+        <span>//</span>
+        <a href="#workflow" class="hover:text-black transition-colors">Workflow</a>
+      </div>
+    </header>
+
+    <main class="px-[4vw] pt-8 md:pt-12 pb-24 md:pb-32">
+      
+      <section class="pt-12 md:pt-20 pb-12 max-w-[1200px]">
+        <div class="rise-in text-[0.78rem] uppercase tracking-[0.22em] font-semibold text-black/60">
+          Fun. Build. Ship.
+        </div>
+        <h1 class="rise-in mt-5 font-extrabold tracking-tighter leading-[0.95] text-[clamp(2.5rem,7vw,5.5rem)] max-w-none">
+          Developer <span class="custom-highlight text-neutral-900">AI Portfolio</span>
+        </h1>
+        <p class="rise-in mt-6 text-[1.15rem] md:text-[1.35rem] leading-snug font-normal text-black/55 max-w-[50ch]">
+          A collection of standalone applications and responsive landing pages engineered using custom LLM design tokens. <span class="font-semibold text-black">Zero to deployed code inside minutes.</span>
+        </p>
+      </section>
+
+      <section id="builds" aria-label="Sites library" class="mt-6 md:mt-10 border-t border-black/10 pt-10">
+        <div class="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h2 class="font-extrabold tracking-tight text-[1.7rem] md:text-[2.15rem] leading-none">
+              Deployed Generations .
+            </h2>
+            <p class="mt-3 max-w-[48ch] text-[1rem] leading-snug text-black/52">
+              Select applications generated via Claude, ChatGPT, and deep structural prompts, polished for live production.
+            </p>
+          </div>
+          <div class="text-[0.74rem] uppercase tracking-[0.12em] font-mono text-black/40">
+            Active Nodes: <span id="project-count">[0/0 Built]</span>
+          </div>
+        </div>
+
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 lg:gap-x-12 lg:gap-y-20">
+          </div>
+      </section>
+
+      <section id="workflow" aria-label="Stay connected" class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5 border-t border-black/10 pt-20 mt-20">
+        <div class="rounded-lg border border-black/10 bg-white px-6 py-7 md:px-8 md:py-9 shadow-sm rise-in">
+          <div class="text-[0.6rem] uppercase tracking-[0.22em] font-bold text-black/40 font-mono">
+            Prompt Engineering Consulting
+          </div>
+          <h2 class="mt-4 font-extrabold tracking-tight text-[1.85rem] md:text-[2.3rem] leading-[1.0] max-w-[15ch]">
+            Need high-conversion layouts built <span class="custom-highlight text-neutral-900">instantly?</span>
+          </h2>
+          <p class="mt-4 max-w-[38ch] text-[0.95rem] leading-snug text-black/55">
+            I craft advanced internal prompt files that build entire product interfaces, dashboards, and responsive marketing systems on command. Let's work together.
+          </p>
+          <div class="mt-6">
+            <a href="mailto:you@email.com" class="inline-block px-5 py-3 text-sm font-semibold rounded text-white bg-black hover:bg-neutral-800 transition-colors">
+              Request Custom Prompts
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-lg bg-black px-6 py-7 md:px-8 md:py-9 text-white shadow-md flex flex-col justify-between rise-in">
+          <div>
+            <div class="text-[0.68rem] uppercase tracking-[0.22em] font-bold text-white/40 font-mono">
+              The Architecture Engine
+            </div>
+            <h2 class="mt-4 font-extrabold tracking-tight text-[1.85rem] md:text-[2.3rem] leading-[1.0]">
+              The Core Engine.
+            </h2>
+            <p class="mt-4 max-w-[42ch] text-[0.95rem] leading-snug text-white/60">
+              By using precise constraint matrices, UI styling tokens, and design variables directly inside LLMs, I reduce standard front-end development cycles into predictable, instant code generations.
+            </p>
+          </div>
+          <div class="mt-8 flex gap-4">
+            <a href="#" class="text-xs uppercase font-mono tracking-widest text-white/80 hover:text-white transition-colors">GitHub</a>
+            <span class="text-white/20 font-mono">/</span>
+            <a href="#" class="text-xs uppercase font-mono tracking-widest text-white/80 hover:text-white transition-colors">LinkedIn</a>
+            <span class="text-white/20 font-mono">/</span>
+            <a href="#" class="text-xs uppercase font-mono tracking-widest text-white/80 hover:text-white transition-colors">Myth &amp; Mind YouTube</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="px-[4vw] py-10 border-t border-black/10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 bg-white">
+      <div class="font-black text-xl tracking-tight">M.S//BRAND.SHIPPED</div>
+      <div class="flex flex-wrap items-center gap-6 text-[0.75rem] uppercase tracking-[0.16em] text-black/50">
+        <a href="#" class="hover:text-black transition-colors">Privacy</a>
+        <a href="#" class="hover:text-black transition-colors">Terms</a>
+        <span>© 2026 M.S//BRAND.SHIPPED. All rights reserved.</span>
+      </div>
+    </footer>
+
+    <script>
+      // Clean Dynamic Data Array containing only name, link, image, and optional video
+      const projectsData = [
+        {
+          title: "Signal Foundry",
+          liveLink: "#",
+          videoLink: "https://playground.bravebrand.com/previews/signal-foundry.mp4?v=d4bf2245", // Replace with direct video file path (.mp4/.webm) or YouTube Embed URL
+          imageUrl: "https://playground.bravebrand.com/previews/signal-foundry.webp"
+        },
+        {
+          title: "",
+          liveLink: "#",
+          videoLink: "https://playground.bravebrand.com/previews/altitude.mp4?v=a664231a", // Left blank intentionally - will cleanly fallback to display image
+          imageUrl: ""
+        },
+        {
+          title: "",
+          liveLink: "#",
+          videoLink: "https://playground.bravebrand.com/previews/boutique.mp4",
+          imageUrl: "https://playground.bravebrand.com/previews/boutique.webp"
+        },
+        {
+          title: "",
+          liveLink: "https://temp-business-website.vercel.app/",
+          videoLink: "",
+          imageUrl: ""
+        }
+      ];
+
+      function renderPortfolioBuilds() {
+        const container = document.getElementById("projects-container");
+        const counterElement = document.getElementById("project-count");
+        
+        if (!container) return;
+        
+        counterElement.innerText = `[${projectsData.length}/${projectsData.length} Built]`;
+
+        container.innerHTML = projectsData.map(project => {
+          let mediaElementHtml = '';
+
+          if (project.videoLink) {
+            // Check if URL is standard YouTube video to safely transform it into background embed parameters
+            if (project.videoLink.includes('youtube.com') || project.videoLink.includes('youtu.be')) {
+              let embedUrl = project.videoLink;
+              if (!embedUrl.includes('/embed/')) {
+                const videoId = embedUrl.split('v=')[1] || embedUrl.split('/').pop();
+                embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0`;
+              }
+              mediaElementHtml = `
+                <iframe src="${embedUrl}" class="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+              `;
+            } else {
+              // Standard ultra-smooth HTML5 auto-loop background display element
+              mediaElementHtml = `
+                <video src="${project.videoLink}" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover pointer-events-none"></video>
+              `;
+            }
+          } else {
+            // Elegant premium static fallback image layout block
+            mediaElementHtml = `
+              <img 
+                src="${project.imageUrl}" 
+                alt="${project.title} Interface Preview" 
+                class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              />
+            `;
+          }
+
+          return `
+            <div class="rise-in group flex flex-col items-center w-full">
+              <div class="relative w-full">
+                <a href="${project.liveLink}" target="_blank" rel="noreferrer" class="block w-full">
+                  <article class="monitor-glow relative w-full overflow-hidden border-[12px] border-neutral-900 bg-neutral-900 cursor-pointer shadow-md group-hover:-translate-y-2 rounded-lg" style="aspect-ratio: 16 / 10">
+                    ${mediaElementHtml}
+                  </article>
+                </a>
+              </div>
+              <div class="mt-4 w-full text-left">
+                <h3 class="text-xl font-bold text-black tracking-tight">${project.title}</h3>
+                <div class="mt-3 flex items-center gap-3">
+                  <a href="${project.liveLink}" target="_blank" rel="noreferrer" class="px-5 py-2 text-xs font-semibold rounded bg-black text-white hover:bg-neutral-800 transition-colors text-center">
+                    Visit Website →
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderPortfolioBuilds();
+
+        const animationObserver = new IntersectionObserver((elements) => {
+          elements.forEach(element => {
+            if (element.isIntersecting) {
+              element.target.classList.add("visible");
+              animationObserver.unobserve(element.target);
+            }
+          });
+        }, {
+          threshold: 0.05,
+          rootMargin: "0px 0px -40px 0px"
+        });
+
+        document.querySelectorAll(".rise-in").forEach(target => {
+          animationObserver.observe(target);
+        });
+      });
+    </script>
+  </body>
+</html>
